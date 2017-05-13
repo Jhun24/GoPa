@@ -5,7 +5,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var randomstring = require('randomstring');
-var port=80;
+var port=1234;
 
 var io = require('socket.io')(port);
 
