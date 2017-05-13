@@ -58,6 +58,8 @@
 
 > data["driverId"] : 라이더의 토큰값
 
+> data["time"] : 남은 시간 
+
 ### emit
 
 > data["userX"] : 유저의 X 좌표를 반환합니다
@@ -69,3 +71,5 @@
 > data["driverY"] : 라이더의 Y 좌표를 반환합니다
 
 > data["driverId"] : 라이더의 토큰값
+
+> data["time"] : 남은 시간 

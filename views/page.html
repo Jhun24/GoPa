@@ -1,10 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Web</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <meta chartset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body>
 
+<body>
+    <!--헤더부분-->
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <div style="text-align:center; padding-top:10px;">
+                    <img src="logo.png" style=" height:40px" alt>
+                </div>
+                <!--<ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="">sass</a></li>
+                    <li><a href="">sass <span class="new badge">4</span></a></li>
+                    <li><a href="">sass</a></li>
+                </ul>-->
+            </div>
+        </nav>
+    </header>
+    <div id="content">
+        <div class="loadding">
+            <div class="loading-container">
+                <div class="loading"></div>
+                <div id="loading-text">loading</div>
+            </div>
+        </div>
+        <div id="map"></div>
+        <script>
+            var start_uluru = {lat: 37.6096410, lng: 126.9976970}; // 국민대
+            var end_uluru = {lat: 37.6098770, lng: 127.0030880};
+            var rider_uluru = {lat: 37.6090768, lng: 127.0049170};
+            var start_marker;
+            var end_marker;
+            var rider_marker;
+            function initMap() {
+
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom:15,
+                    center: start_uluru
+                });
+
+                var iconBase = './';
+                var icons = {
+                    start_a: {
+                        icon: iconBase + 'start_a.png'
+                    },
+                    stop_a: {
+                        icon: iconBase + 'stop_a.png'
+                    },
+                    ride_a: {
+                        icon: iconBase + 'ride_a.png'
+                    }
+                };
+
+                start_marker = new google.maps.Marker({
+                    position: start_uluru,
+                    icon: icons['start_a'].icon,
+                    map: map
+                });
+
+                end_marker = new google.maps.Marker({
+                    position: end_uluru,
+                    icon: icons['stop_a'].icon,
+                    map: map
+                });
+
+                rider_marker = new google.maps.Marker({
+                    position: rider_uluru,
+                    icon: icons['ride_a'].icon,
+                    map:map
+                });
+
+            }
+
+
+        </script>
+
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAt6ASqHG-agW-sb4dTkgufyNFC1l6f4PE&callback=initMap">
+        </script>
+    </div>
+    <div class="bottom_content">
+        <div class="container">
+            <h3>남은 시간을 가져오는 중...</h3>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        function refresh_rider(){
+            /*$.ajax({
+                dataType :  "json",
+                url:        "http://gopa.smilu.link",
+            });*/
+
+            // 3초 마다 호출되는 함수
+            //rider_uluru.lat += 0.5;
+            rider_marker.setPosition(rider_uluru);
+
+        }
+
+        $(document).ready(function(){
+            //setInterval("refresh_rider()", 3000);
+            //alert(getUrlParameter('ride_id'));
+        });
+
+        var socket = io.connect('http://soilatte.kr:3000');
+
+        socket.emit('return', { driverId: getUrlParameter('ride_id') }, function(data){
+
+            console.log(data);
+        });
+        socket.on('location',function(data){
+            /*
+            data["userX"] : 유저의 X 좌표를 반환합니다
+            data["userY"] : 유저의 Y 좌표를 반환합니다
+            data["driverX"] : 라이더의 X 좌표를 반환합니다
+            data["driverY"] : 라이더의 Y 좌표를 반환합니다
+            data["driverId"] : 라이더의 토큰값
+            */
+            $(".loadding").hide();
+            var obj = JSON.parse(data);
+            end_uluru = {lat: obj["userX"], lng: obj["userY"]};
+            rider_uluru = {lat: obj["driverX"], lng: obj["driverY"]};
+            $(".bottom_content h3").text(obj["time"]);
+            rider_marker.setPosition(end_uluru);
+            rider_marker.setPosition(rider_uluru);
+        });
+
+
+
+    </script>
 </body>
 </html>
