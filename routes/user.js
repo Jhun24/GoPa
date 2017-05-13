@@ -1,6 +1,11 @@
 module.exports = user;
 
 function user(app,riderModel,randomString){
+
+  app.get('/',(req,res)=>{
+    res.render("asd.html");
+  })
+
   app.get('/page/:riderId',(req,res)=>{
     res.render("page.html");
   });

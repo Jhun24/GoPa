@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web</title>
+	 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	 <script src="/socket.io/socket.io.js"></script>
+
+
+</head>
+<body>
+
+<script type="text/javascript">
+	var socket = io.connect('http://soylatte.kr:1234');
+
+		var a = new Array();
+		a["userX"] = 1;
+		a["userY"] = 2;
+		a["driverX"] = 3;
+		a["driverY"] = 4;
+		a["driverId"] = "asdfdfs";
+
+		console.log(a);
+		
+        socket.emit('location',{msg:a});
+    
+
+        socket.on('toclient',function(data){
+           	console.log(data["userX"]);
+           	console.log(data["userX"]);
+           	console.log(data["driverX"]);
+           	console.log(data["driverY"]);
+           	console.log(data["driverId"]);
+
+           	console.log("-----");
+
+           	console.log(data.msg)
+
+        });
+
+</script>
+</body>
+</html>
