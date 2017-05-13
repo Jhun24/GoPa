@@ -5,7 +5,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var randomstring = require('randomstring');
-var port=1234;
+var port=3000;
 
 var io = require('socket.io')(port);
 
@@ -65,5 +65,8 @@ io.sockets.on('connection',function(socket){
         console.log('user X location : '+ data["driverX"]+"user Y Location : "+data["driverY"]);
     })
 });
-module.exports = app;
+
+app.listen(port,function(){
+    console.log("Port "+port+" Connection");
+})
 
