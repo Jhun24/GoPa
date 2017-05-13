@@ -4,8 +4,8 @@
 module.exports = rider;
 
 function rider(app,riderModel){
-    app.post('/rider/start',(req,res)=>{
-        var driverId = req.body.driverId;
+    app.get('/rider/start',(req,res)=>{
+        var driverId = req.query.driverId;
 
 
         var url = "http://gopa.smilu.link/page/"+riderId;
