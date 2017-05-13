@@ -7,8 +7,6 @@ var mongoose = require('mongoose');
 var randomstring = require('randomstring');
 var port=3000;
 
-var io = require('socket.io')(port);
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -47,6 +45,10 @@ var rider = mongoose.Schema({
 var riderModel = mongoose.model('riderModel',rider);
 
 
+var io = require('socket.io')(app.listen(port,function(){
+    console.log("Port "+port+" Connection");
+}));
+
 mongoose.connect('mongodb://localhost:27017/test') ;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -65,8 +67,4 @@ io.sockets.on('connection',function(socket){
         console.log('user X location : '+ data["driverX"]+"user Y Location : "+data["driverY"]);
     })
 });
-
-app.listen(port,function(){
-    console.log("Port "+port+" Connection");
-})
 
