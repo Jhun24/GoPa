@@ -35,45 +35,37 @@
 ### Response
 > root 계정의 토큰을 리턴합니다
 
-## /rider/:riderId
-### Require
-> 라이더의 토큰을 받습니다
-
-### Response
-> data["driverX"] : 라이더의 X좌표
-
-> data["driverY"] : 라이더의 Y좌표
-
-> data["userX"] : 유저의 X좌표
-
-> data["userY"] : 유저의 Y좌표
-
 # POST :
 
 ## /rider/start
 ### Require
-> address : 사용자의 문자열 주소
-
-> userXLocation : 사용자의 X 좌표
-
-> userYLocation : 사용자의 Y 좌표
-
-> driverXLocation : 라이더의 X 좌표
-
-> driverYLocation : 라이더의 Y 좌표
-
 > driverId : 라이더의 토큰
 
 ### Response
 > url : 라이더의 위치를 확인 할 수 있는 페이지의 URL
 
-## /rider/location
-### Require
-> driverId : 라이더의 토큰
+# Socket :
+## on ('location')
 
-> driverXLocation : 라이더의 X 좌표
+### on
+> data["userX"] : 유저의 X 좌표를 반환합니다
 
-> driverYLocation : 라이더의 Y 좌표
+> data["userY"] : 유저의 Y 좌표를 반환합니다
 
-### Response
-> 반환값은 없습니다
+> data["driverX"] : 라이더의 X 좌표를 반환합니다
+
+> data["driverY"] : 라이더의 Y 좌표를 반환합니다
+
+> data["driverId"] : 라이더의 토큰값
+
+### emit
+
+> data["userX"] : 유저의 X 좌표를 반환합니다
+
+> data["userY"] : 유저의 Y 좌표를 반환합니다
+
+> data["driverX"] : 라이더의 X 좌표를 반환합니다
+
+> data["driverY"] : 라이더의 Y 좌표를 반환합니다
+
+> data["driverId"] : 라이더의 토큰값
