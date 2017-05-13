@@ -56,7 +56,5 @@ require('./routes/user')(app, riderModel,randomstring)
 require('./routes/rider')(app, riderModel,randomstring)
 
 
-app.listen(port,function(){
-    console.log("Port "+port+" Connection");
-})
+module.exports = app;
 

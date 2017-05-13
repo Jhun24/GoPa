@@ -8,18 +8,27 @@ function rider(app,riderModel,randomstring){
         var address = req.body.address;
         var xLocation = req.body.xLocation;
         var yLocation = req.body.yLocation;
-        var riderId = req.body.riderId;
+        var driverXLocation = req.body.driverXLocation;
+        var driverYLocation = req.body.driverYLocation;
+        var driverId = req.body.driverId;
 
 
-        riderModel.update({"riderId":riderId},{$set:{"driverXLocation":xLocation,"driverYLocation":yLocation,"userLocation":address}},(err,model)=>{
+        riderModel.update({"driverId":driverId},{$set:{"userXLocation":xLocation,"userYLocation":yLocation,"driverXLocation":driverXLocation,"driverYLocation":driverYLocation,"userLocation":address}},(err,model)=>{
             if(err) console.error(err);
             else{
-                var data = new Array();
-                data["url"] = "http://gopa.smilu.link/page/"+riderId;
-                data["token"] = riderId;
-
-                res.send(data);
+                var url = "http://gopa.smilu.link/page/"+riderId;
+                res.send(url);
             }
+        });
+    });
+
+    app.post('/rider/location',(req,res)=>{
+        var driverXLocation = req.body.driverXLocation;
+        var driverYLocation = req.body.driverYLocation;
+        var driverId = req.body.driverId;
+
+        riderModel.update({"driverId":driverId},{$set:{"driverXLocation":driverXLocation,"driverYLocation":driverYLocation}},(err,model)=>{
+            if(err) console.error(err);
         });
     });
 

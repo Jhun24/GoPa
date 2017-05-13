@@ -1,7 +1,7 @@
 module.exports = user;
 
 function user(app,riderModel,randomString){
-  app.get('/page/:riderToken',(req,res)=>{
+  app.get('/page/:riderId',(req,res)=>{
     res.render("page.html");
   });
 
