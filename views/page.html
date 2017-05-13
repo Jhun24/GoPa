@@ -15,7 +15,7 @@
         <nav>
             <div class="nav-wrapper">
                 <div style="text-align:center; padding-top:10px;">
-                    <img src="logo.png" style=" height:40px" alt>
+                    <img src="../logo.png" style=" height:40px" alt>
                 </div>
                 <!--<ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="">sass</a></li>
@@ -128,7 +128,7 @@
             //alert(getUrlParameter('ride_id'));
         });
 
-        var socket = io.connect('http://soilatte.kr:3000');
+        var socket = io.connect('http://soylatte.kr:3000');
 
         socket.emit('return', { driverId: getUrlParameter('ride_id') }, function(data){
 
