@@ -3,14 +3,12 @@
 <head>
 	<title>Web</title>
 	 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-	 <script src="/socket.io/socket.io.js"></script>
-
-
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
 </head>
 <body>
 
 <script type="text/javascript">
-	var socket = io.connect('http://soylatte.kr:1234');
+		var socket = io.connect('http://localhost:1234');
 
 		var a = new Array();
 		a["userX"] = 1;
@@ -21,10 +19,11 @@
 
 		console.log(a);
 		
-        socket.emit('location',{msg:a});
+        socket.emit('location',{"msg":a});
     
 
-        socket.on('toclient',function(data){
+        socket.on('return',function(data){
+            console.log(data)
            	console.log(data["userX"]);
            	console.log(data["userX"]);
            	console.log(data["driverX"]);
