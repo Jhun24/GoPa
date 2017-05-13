@@ -140,7 +140,7 @@
             data["driverId"] : 라이더의 토큰값
             */
             $(".loadding").hide();
-           
+ 	    console.log(data);         
             end_uluru = {lat: data["userX"], lng: data["userY"]};
             rider_uluru = {lat: data["driverX"], lng: data["driverY"]};
             $(".bottom_content h3").text(data["time"]);

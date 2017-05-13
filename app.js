@@ -61,8 +61,10 @@ require('./routes/rider')(app, riderModel,randomstring)
 
 
 io.sockets.on('connection',function(socket){
+    console.log("user connections")
     socket.on('location',function(data){
-        socket.broadcast.emit('return',data);
+      
+	socket.broadcast.emit('return',data);
         console.log(data);
     })
 });

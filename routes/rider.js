@@ -6,9 +6,10 @@ module.exports = rider;
 function rider(app,riderModel){
     app.get('/rider/start',(req,res)=>{
         var driverId = req.query.driverId;
+	
+	console.log(driverId)
 
-
-        var url = "http://gopa.smilu.link/page/"+riderId;
+        var url = "http://gopa.smilu.link/page/"+driverId;
         res.send(url);
     });
 }
