@@ -8,32 +8,23 @@
 <body>
 
 <script type="text/javascript">
-		var socket = io.connect('http://localhost:1234');
+		var socket = io.connect('http://soylatte.kr:3000');
 
-		var a = new Array();
-		a["userX"] = 1;
-		a["userY"] = 2;
-		a["driverX"] = 3;
-		a["driverY"] = 4;
-		a["driverId"] = "asdfdfs";
-
+		var a ={ 
+			userX:1,
+			userY:2,
+			driverX:3,
+			driverY:4,
+			dirverId:"dasfdfs"
+		}
 		console.log(a);
 		
-        socket.emit('location',{"msg":a});
+        socket.emit('location',a);
     
 
         socket.on('return',function(data){
-            console.log(data)
-           	console.log(data["userX"]);
-           	console.log(data["userX"]);
-           	console.log(data["driverX"]);
-           	console.log(data["driverY"]);
-           	console.log(data["driverId"]);
-
-           	console.log("-----");
-
-           	console.log(data.msg)
-
+            
+           	console.log(data)
         });
 
 </script>
