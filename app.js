@@ -65,6 +65,5 @@ io.sockets.on('connection',function(socket){
         console.log('user X location : '+ data["driverX"]+"user Y Location : "+data["driverY"]);
     })
 });
-
 module.exports = app;
 
