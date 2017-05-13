@@ -15,7 +15,8 @@
 			userY:2,
 			driverX:3,
 			driverY:4,
-			dirverId:"dasfdfs"
+			dirverId:"dasfdfs",
+			time:1000
 		}
 		console.log(a);
 		
@@ -24,7 +25,7 @@
 
         socket.on('return',function(data){
             
-           	console.log(data)
+           	console.log(data["userX"])
         });
 
 </script>
