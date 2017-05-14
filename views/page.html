@@ -40,10 +40,11 @@
             var start_marker;
             var end_marker;
             var rider_marker;
+            var map;
             function initMap() {
 
 
-                var map = new google.maps.Map(document.getElementById('map'), {
+                map = new google.maps.Map(document.getElementById('map'), {
                     zoom:15,
                     center: start_uluru
                 });
@@ -148,7 +149,7 @@
             rider_marker.setPosition(rider_uluru);
             map.setCenter(end_uluru);
        		console.log(data);
-       		initMap();
+
 	 });
 
 
