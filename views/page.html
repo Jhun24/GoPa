@@ -114,8 +114,7 @@
         };
 function humanReadable(seconds) {
   var pad = function(x) { return x; }
-  return pad(parseInt(seconds / (60*60))) + "시간" +
-         pad(parseInt(seconds / 60 % 60)) + "분" +
+  return pad(parseInt(seconds / 60 % 60)) + "분" +
          pad(seconds % 60) + "초 뒤에 도착 예정"
 }
         $(document).ready(function(){
@@ -141,7 +140,7 @@ function humanReadable(seconds) {
             if (Number(data["time"]) <= 180){
 	    	$(".bottom_content h3").text("배달원이 곧 도착합니다")
 	    }else{
-	    	$(".bottom_content h3").text(humanReadable(Number(data["time"])));
+	    	$(".bottom_content h3").text("약"+humanReadable(Number(data["time"])));
 	    }
             end_marker.setPosition(end_uluru);
             rider_marker.setPosition(rider_uluru);
