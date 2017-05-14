@@ -40,11 +40,14 @@
             var start_marker;
             var end_marker;
             var rider_marker;
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom:15,
-                center: start_uluru
-            });
+            var map;
             function initMap() {
+
+
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom:15,
+                    center: start_uluru
+                });
 
                 var iconBase = './';
                 var icons = {
